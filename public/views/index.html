@@ -17,19 +17,20 @@
       crossorigin="anonymous"
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+    <script src="../css/style.css"></script>
   </head>
 
   <body>
     <h1>Create a Post</h1>
     <div class=".container" id="container">
-      <form id="form" action="/get/addPost" method="POST">
+      <form id="form">
         <label for="link">Post Link:</label>
-        <br /><br />
+        <br />
 
         <input type="text" name="link" id="link" />
         <br /><br />
         <label for="desc">Post Description:</label>
-        <br /><br />
+        <br />
 
         <input type="text" name="desc" id="desc" />
         <br /><br />
@@ -39,8 +40,8 @@
     <br /><br />
     <h1>Posts</h1>
     <div class=".posts-container" id="posts-container">
-      <ol class="title" id="list"></ol>
+      <ul class="title" id="list"></ul>
     </div>
-    <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>

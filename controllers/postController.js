@@ -1,20 +1,20 @@
 const path = require("path");
+const { posts, comments } = require("../models/postModel");
 
-const Post = require("../models/postModel");
-const Comment = require("../models/postModel");
-exports.getHomePage = (req, res, next) => {
-  res.sendFile(path.join(__dirname, "../", "public", "views", "index.html"));
-};
+// exports.getHomePage = (req, res, next) => {
+//   res.sendFile(path.join(__dirname, "../", "public", "views", "index.html"));
+// };
 
 exports.addPost = (req, res, next) => {
   console.log(req.body);
   const link = req.body.link;
   const desc = req.body.desc;
 
-  Post.create({
-    link: link,
-    desc: desc,
-  })
+  posts
+    .create({
+      link: link,
+      desc: desc,
+    })
     .then((result) => {
       console.log("Post Added");
       res.json(result);
@@ -25,7 +25,8 @@ exports.addPost = (req, res, next) => {
 };
 
 exports.getPosts = (req, res, next) => {
-  Post.findAll()
+  posts
+    .findAll({ include: comments })
     .then((posts) => {
       res.json(posts);
       // console.log(users);
@@ -36,13 +37,13 @@ exports.getPosts = (req, res, next) => {
 exports.addComment = (req, res, next) => {
   console.log(req.body);
   const comment = req.body.comment;
-  const id = req.body.id;
+  const postId = req.body.postId;
 
-  Post.findByPk(id)
-    .then((post) => {
-      return post.createComment({ comment: comment });
+  comments
+    .create({
+      comment: comment,
+      postId: postId,
     })
-
     .then((result) => {
       console.log("Comment Added");
       res.json(result);

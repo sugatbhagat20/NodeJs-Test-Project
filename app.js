@@ -5,7 +5,7 @@ const sequelize = require("./utils/database");
 const cors = require("cors");
 const postRoutes = require("./routes/postRoutes");
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/get", postRoutes);

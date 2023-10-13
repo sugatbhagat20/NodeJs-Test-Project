@@ -22,5 +22,4 @@ const comments = sequelize.define("comments", {
 
 posts.hasMany(comments);
 
-module.exports = posts;
-module.exports = comments;
+module.exports = { posts, comments };
